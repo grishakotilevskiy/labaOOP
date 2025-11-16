@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="labas.MainPage"
+             Title="XML Student Analysis">
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="15">
+
+            <Grid HorizontalOptions="FillAndExpand">
+                <Button x:Name="BtnExit" 
+                        Text="Exit" 
+                        BackgroundColor="Red" 
+                        HorizontalOptions="End" 
+                        WidthRequest="100"
+                        Clicked="OnExitClicked" />
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10">
+                <Button x:Name="BtnLoadXml" Text="Load students.xml" Clicked="OnLoadXmlClicked" Grid.Column="0" Grid.Row="0"/>
+                <Button x:Name="BtnLoadXslt" Text="Load students.xsl" Clicked="OnLoadXsltClicked" Grid.Column="1" Grid.Row="0"/>
+                <Label x:Name="LblXmlPath" Text="XML not loaded" Grid.Column="0" Grid.Row="1" FontSize="Small"/>
+                <Label x:Name="LblXsltPath" Text="XSL not loaded" Grid.Column="1" Grid.Row="1" FontSize="Small"/>
+            </Grid>
+
+            <Label Text="Search Parameters" FontAttributes="Bold"/>
+            <Picker x:Name="PickerFaculty" Title="Select Faculty">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>All</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+            </Picker>
+            <Entry x:Name="EntryDepartment" Placeholder="Enter Department (optional)"/>
+
+            <Label Text="Analysis Strategy" FontAttributes="Bold"/>
+            <Picker x:Name="PickerStrategy" Title="Select Strategy">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>DOM</x:String>
+                        <x:String>SAX</x:String>
+                        <x:String>LINQ</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+                <Picker.SelectedIndex>0</Picker.SelectedIndex>
+            </Picker>
+
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
+                <Button x:Name="BtnAnalyze" Text="Analyze" Clicked="OnAnalyzeClicked" Grid.Column="0"/>
+                <Button x:Name="BtnTransform" Text="Transform" Clicked="OnTransformClicked" Grid.Column="1"/>
+                <Button x:Name="BtnClear" Text="Clear" Clicked="OnClearClicked" Grid.Column="2"/>
+            </Grid>
+
+            <Label Text="Results:" FontAttributes="Bold"/>
+            <Editor x:Name="EditorResults" HeightRequest="300" IsReadOnly="True" AutoSize="Disabled"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
